@@ -1,0 +1,23 @@
+name: Build Menu Lengkap EXE
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout kode
+        uses: actions/checkout@v4
+
+      - name: Compile C++ menjadi EXE
+        run: g++ -static "menu_lengkap.cpp" -o "menu_lengkap.exe"
+
+      - name: Upload file EXE
+        uses: actions/upload-artifact@v4
+        with:
+          name: hasil-menu-lengkap
+          path: "menu_lengkap.exe"
